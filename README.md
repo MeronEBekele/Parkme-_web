@@ -27,7 +27,6 @@ This contains code for the management and display of data across the Parkme cust
 ```json
 {
   "lot_id": uuid4,
-  "name": str,
   "nof_spots": int,
   "location": gps,
   "desc": str
@@ -37,6 +36,7 @@ This contains code for the management and display of data across the Parkme cust
 ### ParkMe Module
 ```json
 {
+  "lot_id": uuid4,
   "location": gps,
   "report_ms": int
 }
@@ -48,7 +48,6 @@ This contains code for the management and display of data across the Parkme cust
   "lot_id": uuid4,
   "space_id": uuid4,
   "parkme_id": uuid4,
-  "ts": time,
   "is_full": bool
 }
 ```

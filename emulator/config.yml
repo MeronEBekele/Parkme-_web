@@ -1,0 +1,12 @@
+lots:
+  - id: "lot_a"
+    lat: 37.774929
+    lon: -122.419416
+    desc: "An emulated lot in the pacific"
+
+sensors:
+  - id: "emulated_01"
+    lat: 37.774929
+    lon: -122.419416
+    interval_ms: 1000
+    lot_id: "lot_a"
