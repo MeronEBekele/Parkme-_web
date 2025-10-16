@@ -1,9 +1,8 @@
 services:
   influxdb:
-    container_name: influxdb
+    container_name: parkme/influxdb
     image: influxdb:${DOCKER_INFLUXDB_VERSION}
     volumes:
-      - /tmp/:/tmp/host/
       - influxdb-storage:/var/lib/influxdb2:rw
     env_file:
       - .env
@@ -13,10 +12,11 @@ services:
       metrics:
         ipv4_address: 172.19.1.5
     profiles:
-     - data
+     - production
+     - emulation
 
   grafana:
-    image: rtu/grafana
+    image: parkme/grafana
     build:
       context: grafana
     volumes:
@@ -31,8 +31,24 @@ services:
       metrics:
         ipv4_address: 172.19.1.6
     profiles:
-     - data
+     - production
+     - emulation
 
+  emulator:
+    image: parkme/emulator
+    build:
+      context: emulator
+    networks:
+      metrics:
+        ipv4_address: 172.19.1.7
+    profiles:
+      - emulation
+    configs:
+      - emulator.yml
+
+configs:
+  emulator.yml: 
+    file: ${DOCKER_EMULATOR_CONFIG:-emulator/emulator.yml}
 
 volumes:
   influxdb-storage:
